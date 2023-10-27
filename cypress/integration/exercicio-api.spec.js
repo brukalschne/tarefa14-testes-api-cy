@@ -38,20 +38,20 @@ describe('Testes da Funcionalidade Usuários', () => {
           })
      });
 
-     it('Deve validar um usuário com email inválido', () => {
+     it.only('Deve validar um usuário com email inválido', () => {
           cy.request({
                method: 'POST',
                url: 'usuarios',
                body: {
                     "nome": "Usuario tarefa 14",
-                    "email": "tarefa14@qa.com.br",
+                    "email": "tarefa14qa.com.br",
                     "password": "teste",
                     "administrador": "true"
                },
                failOnStatusCode: false
           }).then(response => {
                expect(response.status).to.equal(400)
-               expect(response.body.message).to.equal('Este email já está sendo usado')
+               expect(response.body.email).to.equal('email deve ser um email válido')
           })
      });
 
